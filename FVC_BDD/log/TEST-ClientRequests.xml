@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" skipped="1" name="Manage requests from client devices" tests="3" time="0.451176">
+    <testcase classname="Manage requests from client devices" name="Requesting a single Episode for a series" time="0.211273" assertions="3">
+    </testcase>
+    <testcase classname="Manage requests from client devices" name="Requesting all Episodes for a specific series" time="0.232521" assertions="5">
+    </testcase>
+    <testcase classname="Manage requests from client devices" name="Requesting all Episodes for Brand" time="0.005403" assertions="3">
+    </testcase>
+</testsuite>

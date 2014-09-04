@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" skipped="1" name="Manage requests to/from SeaChange" tests="6" time="0.336540">
+    <testcase classname="Manage requests to/from SeaChange" name="Requesting a single Episode for a series" time="0.178000" assertions="3">
+    </testcase>
+    <testcase classname="Manage requests to/from SeaChange" name="Requesting all Episodes for a specific series" time="0.153289" assertions="5">
+    </testcase>
+    <testcase classname="Manage requests to/from SeaChange" name="Requesting all Episodes for Brand" time="0.003951" assertions="3">
+    </testcase>
+</testsuite>
