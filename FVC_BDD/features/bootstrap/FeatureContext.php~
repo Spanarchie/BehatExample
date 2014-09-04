@@ -82,10 +82,6 @@ class FeatureContext extends BehatContext
 </PRODUCTListing>';
 
 
-
-
-
-
     private $baseURL = "http://www.thomas-bayer.com/sqlrest/";
 
     /**
@@ -114,7 +110,6 @@ class FeatureContext extends BehatContext
     {
         $this->w = 1 + 1;
     }
-
 
     /**
      * @When /^I request a specific episodes by ref$/
