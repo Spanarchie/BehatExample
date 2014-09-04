@@ -79,7 +79,7 @@ class FeatureContext extends BehatContext
     <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/47/">47</PRODUCT>
     <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/48/">48</PRODUCT>
     <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/49/">49</PRODUCT>
-</PRODUCTListing>';
+</PRODUCTList>';
 
 
     private $baseURL = "http://www.thomas-bayer.com/sqlrest/";
