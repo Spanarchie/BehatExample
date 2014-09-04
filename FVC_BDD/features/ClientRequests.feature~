@@ -12,7 +12,7 @@ Feature: Manage requests from client devices
   Scenario: Requesting all Episodes for a specific series
     Given I am using a client device
     When I request all episodes of a series
-    And for the # Series
+    And for the "#" Series
     And for the known brand 
     Then I should see the expected results
 

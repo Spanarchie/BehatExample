@@ -1,5 +1,5 @@
 Feature: Manage requests from client devices
-  In order to the Program listing
+  In order to retreive the Program listing
   As a client device
   I want to send a single request for each data request.
 
