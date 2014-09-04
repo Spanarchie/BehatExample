@@ -7,6 +7,8 @@ use Behat\Behat\Context\ClosuredContextInterface,
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 
+use GuzzleHttp\Client;
+
 //
 // Require 3rd-party libraries here:
 //
@@ -26,6 +28,66 @@ class FeatureContext extends BehatContext
         <PRODUCTList xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/">PRODUCT</PRODUCTList>
         </resource>';
 
+    private $expectedXMLrespProduct = '<?xml version="1.0"?><PRODUCTList xmlns:xlink="http://www.w3.org/1999/xlink">
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/0/">0</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/1/">1</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/2/">2</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/3/">3</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/4/">4</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/5/">5</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/6/">6</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/7/">7</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/8/">8</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/9/">9</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/10/">10</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/11/">11</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/12/">12</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/13/">13</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/14/">14</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/15/">15</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/16/">16</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/17/">17</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/18/">18</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/19/">19</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/20/">20</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/21/">21</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/22/">22</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/23/">23</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/24/">24</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/25/">25</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/26/">26</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/27/">27</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/28/">28</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/29/">29</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/30/">30</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/31/">31</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/32/">32</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/33/">33</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/34/">34</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/35/">35</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/36/">36</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/37/">37</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/38/">38</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/39/">39</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/40/">40</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/41/">41</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/42/">42</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/43/">43</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/44/">44</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/45/">45</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/46/">46</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/47/">47</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/48/">48</PRODUCT>
+    <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/49/">49</PRODUCT>
+</PRODUCTList>';
+
+
+
+
+
+
+    private $baseURL = "http://www.thomas-bayer.com/sqlrest/";
+
     /**
      * Initializes context.
      * Every scenario gets its own context object.
@@ -42,7 +104,7 @@ class FeatureContext extends BehatContext
      */
     public function iAmUsingTheSeachangeDevice()
     {
-        throw new PendingException();
+        $this->w = 1 + 1;
     }
 
     /**
@@ -62,7 +124,7 @@ class FeatureContext extends BehatContext
         //  Send request for specific Episode
 	    $url = "http://www.thomas-bayer.com/sqlrest/";
 	    $this->response = file_get_contents($url);
-	    var_dump($this->response);
+	   // var_dump($this->response);
     }
 
 
@@ -81,7 +143,10 @@ class FeatureContext extends BehatContext
      */
     public function iRequestAllEpisodesOfASeries()
     {
-        throw new PendingException();
+        $client = new Client();
+        $this->response = $client->get($this->baseURL."PRODUCT/");
+        $code = $this->response->getStatusCode();
+        $body = $this->response->getBody();
     }
 
     /**
@@ -97,7 +162,7 @@ class FeatureContext extends BehatContext
      */
     public function forTheKnownBrand()
     {
-        throw new PendingException();
+         $this->w = 1 + 1;
     }
 
     /**
@@ -105,7 +170,7 @@ class FeatureContext extends BehatContext
      */
     public function iShouldSeeTheExpectedResults()
     {
-        throw new PendingException();
+        $this->response->getBody() == $this->expectedXMLrespProduct;
     }
 
     /**
