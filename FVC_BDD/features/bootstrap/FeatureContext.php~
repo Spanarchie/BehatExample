@@ -118,7 +118,7 @@ class FeatureContext extends BehatContext
     {
         //  Send request for specific Episode
 	    $url = "http://www.thomas-bayer.com/sqlrest/";
-	    $this->response = file_get_contents($url);
+	    $this->response == file_get_contents($url);
 	   // var_dump($this->response);
     }
 
