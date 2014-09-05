@@ -1,0 +1,42 @@
+Feature: Manage requests through the services api
+  In order our connector to work correctly 
+  As a SeaChange client
+  I want to send a single request for each data request.
+
+
+  Scenario: Requesting a single Episode for a series
+    Given I am using the SeaChange device
+    When I request a specific episodes by ref
+    Then I should see the expected result
+
+
+  Scenario:  Requesting the sample XML from B2C Specification
+
+    Given I am validating the file "/testData/servicesResponse.xml"
+    When I open the file
+    Then the XML element "//@serviceId" should be "12345"
+    And the XML element "//@fragmentId" should be "73"
+    And the XML element "//@fragmentVersion" should be "1409824395"
+    And the XML element "//@xsi:type" should be "tva2:ExtendedServiceInformationType"
+    And the XML attribute "type" on element "//ServiceGenre/" should be "main"
+    And the XML attribute "href" on element "//ServiceGenre/" should be "urn:dtg:urn:dtg:metadata:cs:DTGGenreCS:2010-11#4"
+    And the XML attribute "xsi:type" on element "//RelatedMaterial/" should be "tva2:ExtendedRelatedMaterialType"
+    
+    
+
+
+
+
+
+
+
+
+
+
+    And the XML attribute "cols" on element "//book/chapter/para/informaltable/tgroup" should exist
+    And the XML attribute "color" on element "//book/chapter/title" should not exist
+    And the XML attribute "id" on element "//book/chapter" should be equal to "books"
+    And the XML attribute "id" on element "//book" should not be equal to "choices"
+    And the XML element "//book/chapter/para/informaltable/tgroup/tbody" should have 3 elements
+    And the XML element "//book/title" should contain "is"
+    And the XML element "//book/chapter/title" should not contain "if"

@@ -81,6 +81,18 @@ class FeatureContext extends BehatContext
     <PRODUCT xlink:href="http://www.thomas-bayer.com/sqlrest/PRODUCT/49/">49</PRODUCT>
 </PRODUCTList>';
 
+private $expectedXMLrespService = '<?xml version="1.0" encoding="UTF-8"?>
+<TVAMain xml:lang="en" xmlns="urn:tva:metadata:2012" xmlns:tva2="urn:tva:metadata:extended:2012" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <!-- -->
+    <ProgramDescription>
+        <ServiceInformationTable>
+            <ServiceInformation serviceId="1" xsi:type="tva2:ExtendedServiceInformationType" fragmentId="73" fragmentVersion="1409824395">
+            </ServiceInformation>
+        </ServiceInformationTable>
+    </ProgramDescription>
+</TVAMain>';
+
+
 
     private $baseURL = "http://www.thomas-bayer.com/sqlrest/";
 
@@ -112,14 +124,29 @@ class FeatureContext extends BehatContext
     }
 
     /**
+     * @When /^I request a specific service$/
+     */
+    public function iRequestASpecificService()
+    {
+        //  Send request for specific Service
+	    $url = "http://172.28.128.17/app_dev.php/v0/services/1";
+		$client = new Client();
+		$client->setDefaultOption('headers', array(
+			    'Accept' => 'headapplication/vnd.fvc.v0+xml,application/vnd.fvc.v1+xml,text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+		));
+		$this->responseService = $client->get($url);
+		var_dump($this->responseService);
+    }
+
+    /**
      * @When /^I request a specific episodes by ref$/
      */
     public function iRequestASpecificEpisodesByRef()
     {
         //  Send request for specific Episode
-	    $url = "http://www.thomas-bayer.com/sqlrest/";
-	    $this->response = file_get_contents($url);
-	   // var_dump($this->response);
+        $url = "http://www.thomas-bayer.com/sqlrest/";
+        $this->response = file_get_contents($url);
+       // var_dump($this->response);
     }
 
 
@@ -166,6 +193,16 @@ class FeatureContext extends BehatContext
     public function iShouldSeeTheExpectedResults()
     {
         $this->response->getBody() == $this->expectedXMLrespProduct;
+    }
+
+    /**
+     * @Then /^I should see the expected service results$/
+     */
+    public function iShouldSeeTheExpectedServiceResults()
+    {
+		return false;
+       // $this->responseService->getBody() == $this->expectedXMLrespService;
+	//var_dump($this->expectedXMLrespService);
     }
 
     /**
