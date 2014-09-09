@@ -1,22 +1,21 @@
-Feature: Manage requests to/from SeaChange
+Feature: Manage requests to/from client device
   In order our connector to work correctly 
   As a SeaChange client
   I want to send a single request for each data request.
 
 
-  Scenario: Requesting a single Episode for a series
-    Given I am using the SeaChange device
-    When I request a specific episodes by ref
-    Then I should see the expected result
+  Background:
+    Given I am in the "app_dev.php" environment
+    And I am using the Behat server "172.28.128.17"
+	And I am verifing the "services" API
 
-  Scenario: Requesting all Episodes for a specific series
-    Given I am using the SeaChange device
-    When I request all episodes of a series
-    And for the "#" Series
-    And for the known brand 
-    Then I should see the expected results
+  Scenario Outline: controlling order
+	  Given there are <start> cucumbers
+	  When I eat <eat> cucumbers
+	  Then I should have <left> cucumbers
 
-  Scenario: Requesting all Episodes for Brand
-    Given I am using the SeaChange device
-    When I request all episodes of brand
-    Then I should see the expected results
+	  Examples:
+	    | start | eat | left |
+	    |  12   |  5  |  7   |
+
+	 

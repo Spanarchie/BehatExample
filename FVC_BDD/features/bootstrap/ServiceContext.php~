@@ -1,0 +1,173 @@
+<?php
+
+use Behat\Behat\Context\ClosuredContextInterface,
+    Behat\Behat\Context\TranslatedContextInterface,
+    Behat\Behat\Context\BehatContext,
+    Behat\Behat\Exception\PendingException;
+use Behat\Gherkin\Node\PyStringNode,
+    Behat\Gherkin\Node\TableNode;
+
+use GuzzleHttp\Client;
+
+//
+// Require 3rd-party libraries here:
+//
+require_once 'PHPUnit/Autoload.php';
+require_once 'PHPUnit/Framework/Assert/Functions.php';
+//
+
+/**
+ * Features context.
+ */
+class ServiceContext extends BehatContext
+{
+	private $expectedXMLrespService = '<?xml version="1.0" encoding="UTF-8"?>
+<TVAMain xml:lang="en" xmlns="urn:tva:metadata:2012" xmlns:tva2="urn:tva:metadata:extended:2012" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <!-- -->
+    <ProgramDescription>
+        <ServiceInformationTable>
+            <ServiceInformation serviceId="1" xsi:type="tva2:ExtendedServiceInformationType" fragmentId="73" fragmentVersion="1409824395">
+                <Name>Service A</Name>
+                <Owner>Channel7 Ltd.</Owner>
+                <ServiceURL>dvb://233a..3039</ServiceURL>                <!-- Sport -->
+                <ServiceGenre type="main" href="urn:dtg:urn:dtg:metadata:cs:DTGGenreCS:2010-11#4"/>
+                <!-- Link to still image promoting Service -->
+                <RelatedMaterial xsi:type="tva2:ExtendedRelatedMaterialType">
+                    <!-- 19: Promotional still image -->
+                    <HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+                    <!-- 15: PNG; optional element -->
+                    <Format href="urn:mpeg:mpeg7:cs:FileFormatCS:2001:15"/>
+                    <MediaLocator>
+                        <mpeg7:MediaUri>http://imagesvc.freeview.co.uk/channel7/service_a_linear.png</mpeg7:MediaUri>
+                    </MediaLocator>
+                    <!-- Alt text -->
+                    <PromotionalText>Service A</PromotionalText>
+                </RelatedMaterial>
+            </ServiceInformation>
+        </ServiceInformationTable>
+    </ProgramDescription>
+</TVAMain>';
+
+    private $responseServiceStatus = 200;
+	private $env, $srv, $api, $verNo;
+
+    /**
+     * Initializes context.
+     * Every scenario gets its own context object.
+     *
+     * @param array $parameters context parameters (set them up through behat.yml)
+     */
+    public function __construct(array $parameters)
+    {
+        // Initialize your context here
+    }
+
+
+    /**
+     * @Given /^I am verifing the "([^"]*)" API$/
+     */
+    public function iAmVerifingTheSelectedAPI($arg1)
+    {
+        $this->api = $arg1;
+    }
+
+	/**
+     * @Given /^I am in the "([^"]*)" environment$/
+     */
+    public function iAmInTheEnvironment($arg1)
+    {
+        $this->env = $arg1;
+    }
+
+    /**
+     * @Given /^I am using the Behat server "([^"]*)"$/
+     */
+    public function iAmUsingTheBehatServer($arg1)
+    {
+        $this->srv = $arg1;
+    }
+
+
+
+
+
+
+    /**
+     * @Given /^I am using a client device$/
+     */
+    public function iAmUsingAClientDevice()
+    {
+        $this->w = 1 + 1;
+    }
+
+    /**
+     * @When /^I request a specific service$/
+     */
+    public function iRequestASpecificService()
+    {
+        //  Send request for specific Service
+	    $url = "http://172.28.128.17/app_dev.php/v0/services/1";
+		$client = new Client();
+		$client->setDefaultOption('headers', array(
+			    'Accept' => 'headapplication/vnd.fvc.v0+xml,application/vnd.fvc.v1+xml,text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+		));
+		$this->responseService = $client->get($url);
+    }
+
+	/**
+     * @When /^I request a service of Version "([^"]*)"$/
+     */
+    public function iRequestASpecificServiceVersion($verNoRef)
+    {
+		$this->verNo = $verNoRef;
+    }
+
+	/**
+     * @When /^I request a service of ID "([^"]*)"$/
+     */
+    public function iRequestASpecificServiceId($servID)
+    {
+        //  Send request for specific Service
+	    $url = "http://".$this->srv."/".$this->env."/".$this->verNo."/".$this->api."/".$servID;
+		$client = new Client();
+		$client->setDefaultOption('headers', array(
+			    'Accept' => 'headapplication/vnd.fvc.v0+xml,application/vnd.fvc.v1+xml,text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+		));
+		try{
+				$this->responseService = $client->get($url);
+				$this->responseServiceStatus = $this->responseService->getStatusCode();
+		} catch (Exception $e) {
+			$this->responseServiceStatus = $e->getCode();
+		}
+    }
+
+
+    /**
+     * @Then /^I should see the expected service results$/
+     */
+    public function iShouldSeeTheExpectedServiceResults()
+    {
+		$expected = $this->expectedXMLrespService;
+		$actual = $this->responseService->getBody();
+		assertEquals($expected,$actual);
+    }
+
+ 	/**
+     * @Then /^the Response Status code should be "([^"]*)"$/
+     */
+    public function iShouldSeeTheExpectedServiceResultIs404($expected)
+    {
+		$actual = $this->responseServiceStatus;
+		assertEquals($expected,$actual);
+    }
+
+
+/***********************************************************************
+************************************************************************
+***                                                                  ***
+***                       End of Code                                ***
+***                                                                  ***
+************************************************************************
+***********************************************************************/
+
+}
