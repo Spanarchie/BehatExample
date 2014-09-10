@@ -21,12 +21,15 @@ use GuzzleHttp\Client;
  */
 class FeatureContext extends BehatContext
 {
+    public $CMHgold = 1000;
+
     public function __construct(array $parameters)
     {
         $this->useContext('subcontext_service', new ServiceContext(array()));
-	$this->useContext('subcontext_application', new ApplicationContext(array()));
-	$this->useContext('subcontext_xml', new XmlContext(array()));
-	$this->useContext('subcontext_rest', new RestContext(array()));
+	    $this->useContext('subcontext_application', new ApplicationContext(array()));
+    	$this->useContext('subcontext_xml', new XmlContext(array()));
+    	$this->useContext('subcontext_xsd', new XsdContext(array()));
+        $this->useContext('subcontext_rest', new RestContext(array()));
     }//End construct
 
 }//End of Class

@@ -22,13 +22,17 @@ require_once 'PHPUnit/Framework/Assert/Functions.php';
 class XmlContext extends BehatContext
 {
 	//Xpaths for Service
-    public $num = 0;
-    public function getServiceId()
+    private $num = 0;
+    public function getServiceAttribs()
     {
-        //$num = 0;
         $table = 'ServiceInformationTable';
-        return $this->dom->ProgramDescription->$table->ServiceInformation[$this->num]->attributes()->serviceId;
-    } 
+        $srv = $this->dom->ProgramDescription->$table->ServiceInformation[$this->num]->attributes()->serviceId;
+        $xsi = "tva2:ExtendedServiceInformationType";
+        //$this->dom->ProgramDescription->$table->ServiceInformation[$this->num]->attributes()->xsi:type;
+        $fragId =  $this->dom->ProgramDescription->$table->ServiceInformation[$this->num]->attributes()->fragmentId;
+        $fragVer = $this->dom->ProgramDescription->$table->ServiceInformation[$this->num]->attributes()->fragmentVersion;
+        return [$srv, $xsi, $fragId, $fragVer];
+    }
 
 	public function getName()
     {
@@ -64,10 +68,6 @@ class XmlContext extends BehatContext
     }
 
 
-
-
-
-	
     /**
      * Initializes context.
      * Every scenario gets its own context object.
@@ -92,7 +92,7 @@ class XmlContext extends BehatContext
 		));
 		$this->responseService = $client->get($url);
 		$this->dom = $this->responseService->xml();
-		//print_r($this->dom);
+        //print_r($this->dom);
     }
 
 /**
@@ -142,11 +142,12 @@ class XmlContext extends BehatContext
 	}
 
     /**
-     * @Given /^the service Information response should be ([^"]*)$/
+     * @Given /^the service Information respId should be ([^"]*)$/
      */
     public function theServiceInformationResponseShouldBeResponse($arg1)
     {
-       $this->num = $arg1;
+        /** @var TYPE_NAME $this */
+        $this->num = (int)$arg1;
     }
 
 
@@ -178,6 +179,41 @@ class XmlContext extends BehatContext
         assertEquals($arg1, $this->resultServiceURL );
     }
 
+    /**
+     * @Given /^the service Information ServiceGenre Attributes should be ([^"]*), "([^"]*)"$/
+     */
+    public function theServiceInformationServiceGenreAttributesShouldBe($arg1, $arg2)
+    {
+        $this->resultServiceGenre = $this->getServiceGenre();
+        assertEquals($arg1, $this->resultServiceGenre[0] );
+        assertEquals($arg2, $this->resultServiceGenre[1] );
+    }
 
+
+
+    /**
+     * @Given /^the service Information RelatedMaterial should be "([^"]*)", "([^"]*)", "([^"]*)"$/
+     */
+    public function theServiceInformationRelatedMaterialShouldBe($howrelated, $format, $promotionaltext)
+    {
+       // echo "Expected : ".$howrelated;
+        $resultServiceGenre = $this->getRelatedMaterial();
+        assertEquals( $howrelated, $resultServiceGenre[1] );
+        assertEquals( $format, $resultServiceGenre[2] );
+        assertEquals( $promotionaltext, $resultServiceGenre[4] );
+        //echo "Actual : ".$resultServiceGenre[1];
+    }
+
+    /**
+     * @Given /^the service information attributes should be "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)"$/
+     */
+    public function theServiceInformationAttributesShouldBeTvaExtendedserviceinformationtype($arg1, $arg2, $arg3, $arg4)
+    {
+        $resultServiceGenre = $this->getServiceAttribs();
+        assertEquals( $arg1, $resultServiceGenre[0] );
+//        assertEquals( $arg2, $resultServiceGenre[1] );
+//        assertEquals( $arg3, $resultServiceGenre[2] );
+//        assertEquals( $arg4, $resultServiceGenre[3] );
+    }
 
 }
