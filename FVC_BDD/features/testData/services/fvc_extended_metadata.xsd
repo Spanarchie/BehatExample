@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TV-Anytime extension schema -->
+<!-- Matt Stevens, Arqiva Digital Platforms -->
+<!-- Copyright (c) 2014 Digital UK Limited -->
+<!--
+=======================================================
+Freeview Metadata Ingest Schema: Profile of TV-Anytime Extended Schema
+======================================================= 
+15/07/2014, Matt Stevens:
+- Added TargetPlace
+=======================================================
+-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:tva="urn:tva:metadata:2012" xmlns:tva2="urn:tva:metadata:extended:2012" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fv="http://refdata.freeview.co.uk/schemas/Metadata/2014-07-15" targetNamespace="http://refdata.freeview.co.uk/schemas/Metadata/2014-07-15" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- -->
+	<import namespace="urn:tva:metadata:extended:2012" schemaLocation="tva2_metadata_3-3_v161.xsd"/>
+	<import namespace="urn:tva:metadata:2012" schemaLocation="tva_metadata_3-1_v181.xsd"/>
+	<import namespace="urn:tva:mpeg7:2008" schemaLocation="tva_mpeg7_2008.xsd"/>
+	<!-- -->
+	<!-- -->
+	<!--<complexType name="PagePreviousType">
+		<attribute name="href" type="string" use="required"/>
+	</complexType>-->
+	<!-- Extended targeting -->
+	<!--<complexType name="PagingInformationTable">
+		<complexContent>
+			<extension base="tva:ProgramDescriptionType">
+				<sequence>
+					<element name="Previous" type="fv:PagePreviousType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>-->
+	<complexType name="ExtendedProgramDescriptionTable">
+		<complexContent>
+			<extension base="tva:ProgramDescriptionType">
+				<sequence>
+					<element name="Previous" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+</schema>

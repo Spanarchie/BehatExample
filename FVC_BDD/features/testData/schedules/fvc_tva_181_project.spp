@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project>
+	<Folder FolderName="XML Files" ExtStr="xml;cml;math;rdf;smil;svg;wml">
+		<File FilePath="57357_002_SCANDALICIOUS_SINGLE_SEASON_EPISODE.xml" HomeFolder="Yes"/>
+		<File FilePath="57980_002_RANDOM_ACTS_FLATTENED_BRAND.xml" HomeFolder="Yes"/>
+		<File FilePath="57984_005_SARAH_BENNY_SELLING_HOUSES_MULTI_SEASON_EPISODE.xml" HomeFolder="Yes"/>
+	</Folder>
+	<Folder FolderName="XSL Files" ExtStr="xsl;xslt"/>
+	<Folder FolderName="XQuery Files" ExtStr="xq;xql;xquery"/>
+	<Folder FolderName="HTML Files" ExtStr="html;htm;xhtml;asp"/>
+	<Folder FolderName="DTD/Schemas" ExtStr="dtd;dcd;xdr;biz;xsd">
+		<File FilePath="fvc_extended_metadata.xsd" HomeFolder="Yes"/>
+		<File FilePath="tva2_metadata_3-3_v161.xsd" HomeFolder="Yes"/>
+		<File FilePath="tva_interstitial_3-4_v161.xsd" HomeFolder="Yes"/>
+		<File FilePath="tva_metadata_3-1_v181.xsd" HomeFolder="Yes"/>
+		<File FilePath="tva_mpeg21_2012.xsd" HomeFolder="Yes"/>
+		<File FilePath="tva_mpeg7_2008.xsd" HomeFolder="Yes"/>
+		<File FilePath="tva_rmpi_5-1_v171.xsd" HomeFolder="Yes"/>
+		<File FilePath="xml.xsd" HomeFolder="Yes"/>
+	</Folder>
+	<Folder FolderName="Entities" ExtStr="ent"/>
+</Project>

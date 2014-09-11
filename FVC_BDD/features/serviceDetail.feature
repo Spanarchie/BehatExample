@@ -24,7 +24,7 @@ Feature: Validating the details returned from a Service Request.
     | "1"   | "tva2:ExtendedServiceInformationType" | "73"       | "1409824395"    |
 
 
-
+  @sanity
   Scenario Outline: Requesting a specific Service
     Given I am using a client device
 	When I request a specific xml service

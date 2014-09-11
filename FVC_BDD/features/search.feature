@@ -1,4 +1,4 @@
-@Sanity
+@sanity
 Feature: Manage requests to/from client device
   In order our connector to work correctly 
   As a SeaChange client

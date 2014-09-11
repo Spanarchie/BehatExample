@@ -21,35 +21,6 @@ require_once 'PHPUnit/Framework/Assert/Functions.php';
  */
 class XsdContext extends BehatContext
 {
-    public function restCall($route, $ver, $ref)
-    {
-        //  Send request for specific Service
-        $url = "http://172.28.128.17/app_dev.php/".$ver."/".$route."/".$ref;
-        echo "URL : ".$url;
-        $client = new Client();
-        $client->setDefaultOption('headers', array(
-            'Accept' => 'headapplication/vnd.fvc.v0+xml,application/vnd.fvc.v1+xml,text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
-        ));
-        try{
-            $this->responseService = $client->get($url);
-            $this->dom = $this->responseService->xml();
-            $this->responseServiceStatus = $this->responseService->getStatusCode();
-            print_r($this->dom);
-        }catch (Exception $e) {
-            $this->responseServiceStatus = $e->getCode();
-        }
-    }
-
-
-    public function isXmlValid($xsdRef)
-    {
-        $xsd = __DIR__.'/../testData/serviceXml.xsd';
-        var_dump($xsd);
-        $ans = $this->dom->schemaValidate($xsd);
-        var_dump($ans);
-        if($this->api != 'players') {return  true;} else{{return  false;}};
-    }
-
 
     /**
      * Initializes context.
@@ -94,9 +65,13 @@ class XsdContext extends BehatContext
         ));
         try{
             $this->responseService = $client->get($url);
-            $this->dom = $this->responseService->xml();
+            $this->domOrig = $this->responseService->xml();
+            print_r($this->domOrig);
+            $this->dom = new DOMDocument();
+            $this->dom->loadXML($this->domOrig->asXML());
+            print_r($this->dom);
+
             $this->responseServiceStatus = $this->responseService->getStatusCode();
-         //   print_r($this->dom);
         }catch (Exception $e) {
             $this->responseServiceStatus = $e->getCode();
         }
@@ -118,11 +93,49 @@ class XsdContext extends BehatContext
      */
     public function theBeValidAgainstXsd($arg1)
     {
-        $xsdRef = $arg1;
-        $ans = $this->isXmlValid($xsdRef);
-        assertTrue( $ans );
+        $is_valid_xml = $this->dom->schemaValidate('features/testData/'.$this->api.'/fvc_extended_metadata.xsd');
+        assertTrue($is_valid_xml);
 
     }
 
+
+/**
+  Area for the sanity checking of Known files both xml & xsd
+*/
+    /**
+     * @When /^I validate ([^"]*)$/
+     */
+    public function iValidateServices($arg1)
+    {
+        $this->sampleServ = $arg1;
+    }
+
+    /**
+     * @Given /^I use xml ([^"]*)$/
+     */
+    public function iUseXml($arg1)
+    {
+        $this->sampleXML = $arg1;
+    }
+
+    /**
+     * @Given /^I use xsd "([^"]*)"$/
+     */
+    public function iUseXsd($arg1)
+    {
+        $this->sampleXsd = $arg1;
+    }
+
+
+    /**
+     * @Then /^the Response Status should be ([^"]*)$/
+     */
+    public function theResponseStatus()
+    {
+        $doc = new DOMDocument();
+        $doc->load('features/testData/'.$this->sampleServ.'/'.$this->sampleXML.'.xml');
+        $is_valid_xml = $doc->schemaValidate('features/testData/'.$this->sampleServ.'/'.$this->sampleXsd);
+        assertTrue($is_valid_xml);
+    }
 
 }

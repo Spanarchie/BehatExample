@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="ProgramDescription">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ServiceInfo"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ServiceInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Name"/>
+        <xs:element ref="Owner"/>
+        <xs:element ref="RelatedMaterial"/>
+      </xs:sequence>
+      <xs:attribute name="FragmentId" use="required" type="xxs:string"/>
+      <xs:attribute name="FragmentVersion" use="required" type="xs:integer"/>
+      <xs:attribute name="serviceId" use="required" type="xs:integer"/>
+      <xs:attribute name="xsitype" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Name" type="xs:string"/>
+  <xs:element name="Owner" type="xs:string"/>
+  <xs:element name="RelatedMaterial">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="HowRelated"/>
+        <xs:element ref="MediaLocator"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HowRelated">
+    <xs:complexType>
+      <xs:attribute name="href" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MediaLocator">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="MediaURI"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MediaURI">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:anyURI">
+          <xs:attribute name="contentType" use="required"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

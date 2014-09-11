@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProgramDescription>
+    <ServiceInfo serviceId="12345" xsitype="J343j3434kkkk" FragmentId="73" FragmentVersion="203874020347">
+        <Name>Service A</Name>
+        <Owner>Channel 7 Ltd.</Owner>
+        <RelatedMaterial>
+            <HowRelated href="anystringwiht23434342"/>
+            <MediaLocator>
+                <MediaURI contentType="image/png">
+                    http://image.google.com/channel7/linear.png
+                </MediaURI>
+            </MediaLocator>
+        </RelatedMaterial>
+    </ServiceInfo>
+</ProgramDescription>

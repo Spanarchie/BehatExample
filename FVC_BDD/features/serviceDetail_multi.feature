@@ -1,7 +1,7 @@
 @ServiceDetailMulti
 Feature: Validating the details returned from a multiple Service Request.
   As a Client Device 
-  I want to know the data being returned is correctversion
+  I want to know the data being returned is correct version
   So That I know it will work as expected.
 
   Background:
@@ -24,7 +24,7 @@ Feature: Validating the details returned from a multiple Service Request.
     | 1      | "67890"   | "null"  | "null"     | "null"          |
 
 
-
+  @sanity
   Scenario Outline: Verifing Service Information (Head/Owner/ServiceURL)
     Given I am using a client device
 	When I request a multi xml service

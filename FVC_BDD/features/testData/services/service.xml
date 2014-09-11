@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TVAMain xml:lang="en" xmlns="urn:tva:metadata:2012" xmlns:tva2="urn:tva:metadata:extended:2012" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<!-- -->
+	<ProgramDescription>
+		<ServiceInformationTable>
+			<ServiceInformation serviceId="12345" xsi:type="tva2:ExtendedServiceInformationType" fragmentId="73" fragmentVersion="1409824395">
+				<Name>Service A</Name>
+				<Owner>Channel7 Ltd.</Owner>
+				<ServiceURL>dvb://233a..3039</ServiceURL>
+				<!-- Sport -->
+				<ServiceGenre type="main" href="urn:dtg:urn:dtg:metadata:cs:DTGGenreCS:2010-11#4"/>
+				<!-- Link to still image promoting Service -->
+				<RelatedMaterial xsi:type="tva2:ExtendedRelatedMaterialType">
+					<!-- 19: Promotional still image -->
+					<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+					<MediaLocator>
+						<MediaUri contentType="image/png">http://imagesvc.freeview.co.uk/channel7/service_a_linear.png</MediaUri>
+					</MediaLocator>
+					<!-- Alt text -->
+					<PromotionalText>Service A</PromotionalText>
+				</RelatedMaterial>
+			</ServiceInformation>
+		</ServiceInformationTable>
+	</ProgramDescription>
+</TVAMain>
+

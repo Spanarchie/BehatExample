@@ -1,4 +1,4 @@
-@XML @Sanity
+@XML @sanity
 Feature: Manage XML validation for client device
   As a device client
   I want to verify the xml response

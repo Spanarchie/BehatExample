@@ -9,7 +9,8 @@ Feature: Manage requests from client device using API Versioning
     Given I am in the "app_dev.php" environment
     And I am using the Behat server "172.28.128.17"
 	And I am verifing the "services" API
-@api @Sanity
+
+  @api @sanity
   Scenario: Requesting a specific Version of API
     Given I am using a client device
   	When I request a service of Version "v0"

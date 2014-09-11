@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TVAMain xml:lang="en" xmlns="urn:tva:metadata:2012" xmlns:tva2="urn:tva:metadata:extended:2012" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mpeg7="urn:tva:mpeg7:2008">
+	<ProgramDescription>
+		<ProgramInformationTable>
+			<ProgramInformation programId="crid://channel7.co.uk/b01myjsy" xml:lang="en" fragmentId="70" fragmentVersion="1">
+				<BasicDescription>
+					<Title type="main" xml:lang="en">Bargain Hunt</Title>
+					<Title type="secondary">01/01/2014</Title>
+					<Synopsis length="medium" xml:lang="en"/>
+					<Synopsis length="long" xml:lang="en">The Bargain Hunt teams head to Staffordshire's County Showground, where both experts face double trouble. David Harper heads up two Toms for the red team, while twin sisters Elizabeth and Rachel are guided by Jonathan Pratt for the blue team. Tim Wonnacott travels to Bath to visit one of the city's greatest architectural delights.</Synopsis>
+					<Genre href="urn:dtg:cs:DTGGenreCS:2010:3" type="main"/>
+					<ParentalGuidance>
+                                                <mpeg7:ParentalRating href="http://refdata.freeview.co.uk/mpeg7cs/FreeviewContentRatingCS/2014-07-15#fifteen"/>
+                                                <ExplanatoryText length="long">Contains strong language and flash photography</ExplanatoryText>
+                                        </ParentalGuidance>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<Format href="urn:mpeg:mpeg7:cs:FileFormatCS:2001:15"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">http://imagesvc.freeview.co.uk/channel7/bargain_hunt.png</MediaUri>
+						</MediaLocator>
+						<PromotionalText>Bargain hunters in Staffordshire</PromotionalText>
+					</RelatedMaterial>
+				</BasicDescription>
+				<AVAttributes>
+					<AudioAttributes>
+						<AudioLanguage purpose="urn:tva:metadata:cs:AudioPurposeCS:2007:1">en</AudioLanguage>
+					</AudioAttributes>
+					<CaptioningAttributes>
+						<Coding href="urn:tva:metadata:cs:CaptionCodingFormatCS:2010:2.1"/>
+					</CaptioningAttributes>
+				</AVAttributes>
+			</ProgramInformation>
+			<ProgramInformation programId="crid://channel7.co.uk/b03bhc3n" xml:lang="en" fragmentId="73" fragmentVersion="1">
+				<BasicDescription>
+					<Title type="main" xml:lang="en">BBC News at One</Title>
+					<Synopsis length="medium" xml:lang="en">
+                		The latest national and international news stories from the BBC News team, followed by weather
+			</Synopsis>
+					<Genre href="urn:dtg:cs:DTGGenreCS:2010:2" type="main"/>
+					<ParentalGuidance>
+						<mpeg7:ParentalRating href="http://refdata.freeview.co.uk/mpeg7cs/FreeviewContentRatingCS/2014-07-15#no_parental_controls"/>
+						<ExplanatoryText length="long">
+					Contains scenes of violence and strong language.
+				</ExplanatoryText>
+					</ParentalGuidance>
+					<RelatedMaterial>
+						<HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
+						<Format href="urn:mpeg:mpeg7:cs:FileFormatCS:2001:15"/>
+						<MediaLocator>
+							<MediaUri contentType="image/png">
+                        		http://imagesvc.freeview.co.uk/channel7/bbc_news.png
+                        	</MediaUri>
+						</MediaLocator>
+					</RelatedMaterial>
+				</BasicDescription>
+				<AVAttributes>
+					<AudioAttributes>
+						<MixType href="urn:mpeg:mpeg7:cs:AudioPresentationCS:2001:3"/>
+					</AudioAttributes>
+					<VideoAttributes>
+						<HorizontalSize>576</HorizontalSize>
+						<VerticalSize>512</VerticalSize>
+						<AspectRatio>16:9</AspectRatio>
+					</VideoAttributes>
+                                        <CaptioningAttributes>
+                                                <Coding href="urn:tva:metadata:cs:CaptionCodingFormatCS:2010:2.1"/>
+                                        </CaptioningAttributes>
+				</AVAttributes>
+			</ProgramInformation>
+		</ProgramInformationTable>
+		<ProgramLocationTable>
+			<Schedule xml:lang="en" serviceIDRef="3039" fragmentId="71" fragmentVersion="2" start="2013-09-25T11:15:00Z" end="2013-09-25T12:30:00.000Z">
+				<ScheduleEvent>
+					<Program crid="crid://channel7.co.uk/b01myjsy"/>
+					<ProgramURL>dvb://233a..3039;b2e3</ProgramURL>
+					<InstanceDescription>
+						<AVAttributes>
+							<AudioAttributes>
+								<AudioLanguage purpose="urn:tva:metadata:cs:AudioPurposeCS:2007:1">en</AudioLanguage>
+							</AudioAttributes>
+							<VideoAttributes>
+								<HorizontalSize>1920</HorizontalSize>
+								<VerticalSize>1080</VerticalSize>
+								<AspectRatio>16:9</AspectRatio>
+							</VideoAttributes>
+							<CaptioningAttributes>
+								<Coding href="urn:tva:metadata:cs:CaptionCodingFormatCS:2010:2.1"/>
+							</CaptioningAttributes>
+						</AVAttributes>
+						<OtherIdentifier type="eit-programme-crid">crid://channel7.co.uk/23VD4Q</OtherIdentifier>
+						<OtherIdentifier type="eit-series-crid">crid://channel7.co.uk/KM9T8E</OtherIdentifier>
+					</InstanceDescription>
+					<PublishedStartTime>2013-09-25T11:15:00Z</PublishedStartTime>
+					<PublishedDuration>PT45M</PublishedDuration>
+				</ScheduleEvent>
+				<ScheduleEvent>
+					<Program crid="crid://channel7.co.uk/b03bhc3n"/>
+					<ProgramURL>dvb://233a..3039;b2e4</ProgramURL>
+					<InstanceDescription>
+						<AVAttributes>
+							<VideoAttributes>
+								<HorizontalSize>576</HorizontalSize>
+								<VerticalSize>512</VerticalSize>
+								<AspectRatio>16:9</AspectRatio>
+							</VideoAttributes>
+                                                        <CaptioningAttributes>
+                                                                <Coding href="urn:tva:metadata:cs:CaptionCodingFormatCS:2010:2.1"/>
+                                                        </CaptioningAttributes>
+						</AVAttributes>
+						<OtherIdentifier type="eit-programme-crid">crid://channel7.co.uk/5A795M</OtherIdentifier>
+						<OtherIdentifier type="eit-series-crid">crid://channel7.co.uk/KCI4LM</OtherIdentifier>
+					</InstanceDescription>
+					<PublishedStartTime>2013-09-25T12:00:00Z</PublishedStartTime>
+					<PublishedDuration>PT30M</PublishedDuration>
+				</ScheduleEvent>
+			</Schedule>
+			<OnDemandProgram xml:lang="en" fragmentId="69" fragmentVersion="1">
+				<Program crid="crid://channel7.co.uk/b01myjsy"/>
+				<ProgramURL contentType="application/vnd.dvb.ait+xml">http://channel7.co.uk/ait.aitx?pid=b01myjsy</ProgramURL>
+				<AuxiliaryURL contentType="application/vnd.dvb.ait+xml">http://channel7.co.uk/ait.aitx? template</AuxiliaryURL>
+				<InstanceMetadataId>imi:SD</InstanceMetadataId>
+				<InstanceDescription>
+					<!-- media availability -->
+                                        <Genre type="other" href="http://refdata.freeview.co.uk/mpeg7cs/FreeviewMediaAvailabilityCS/2014-07-15#media_available"/>
+					<AVAttributes>
+						<VideoAttributes>
+							<HorizontalSize>576</HorizontalSize>
+							<VerticalSize>512</VerticalSize>
+							<AspectRatio>16:9</AspectRatio>
+						</VideoAttributes>
+                                                <CaptioningAttributes>
+                                                        <Coding href="urn:tva:metadata:cs:CaptionCodingFormatCS:2010:2.1"/>
+                                                </CaptioningAttributes>
+					</AVAttributes>
+				</InstanceDescription>
+				<PublishedDuration>PT1H</PublishedDuration>
+				<StartOfAvailability>2013-09-25T12:03:09Z</StartOfAvailability>
+				<EndOfAvailability>2013-10-02T09:59:00Z</EndOfAvailability>
+				<DeliveryMode>streaming</DeliveryMode>
+			</OnDemandProgram>
+		</ProgramLocationTable>
+	</ProgramDescription>
+</TVAMain>
