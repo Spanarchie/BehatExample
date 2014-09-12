@@ -21,32 +21,8 @@ require_once 'PHPUnit/Framework/Assert/Functions.php';
  */
 class ServiceContext extends BehatContext
 {
-	private $expectedXMLrespService = '<?xml version="1.0" encoding="UTF-8"?>
-<TVAMain xml:lang="en" xmlns="urn:tva:metadata:2012" xmlns:tva2="urn:tva:metadata:extended:2012" xmlns:mpeg7="urn:tva:mpeg7:2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <!-- -->
-    <ProgramDescription>
-        <ServiceInformationTable>
-            <ServiceInformation serviceId="1" xsi:type="tva2:ExtendedServiceInformationType" fragmentId="73" fragmentVersion="1409824395">
-                <Name>Service A</Name>
-                <Owner>Channel7 Ltd.</Owner>
-                <ServiceURL>dvb://233a..3039</ServiceURL>                <!-- Sport -->
-                <ServiceGenre type="main" href="urn:dtg:urn:dtg:metadata:cs:DTGGenreCS:2010-11#4"/>
-                <!-- Link to still image promoting Service -->
-                <RelatedMaterial xsi:type="tva2:ExtendedRelatedMaterialType">
-                    <!-- 19: Promotional still image -->
-                    <HowRelated href="urn:tva:metadata:cs:HowRelatedCS:2012:19"/>
-                    <!-- 15: PNG; optional element -->
-                    <Format href="urn:mpeg:mpeg7:cs:FileFormatCS:2001:15"/>
-                    <MediaLocator>
-                        <mpeg7:MediaUri>http://imagesvc.freeview.co.uk/channel7/service_a_linear.png</mpeg7:MediaUri>
-                    </MediaLocator>
-                    <!-- Alt text -->
-                    <PromotionalText>Service A</PromotionalText>
-                </RelatedMaterial>
-            </ServiceInformation>
-        </ServiceInformationTable>
-    </ProgramDescription>
-</TVAMain>';
+	private $expectedXMLrespService;
+
 
     private $responseServiceStatus = 200;
 	private $env, $srv, $api, $verNo;
@@ -59,12 +35,13 @@ class ServiceContext extends BehatContext
      */
     public function __construct(array $parameters)
     {
-        // Initialize your context here
+        $this->expectedXMLrespService = new DOMDocument();
+        $this->expectedXMLrespService->load('features/testData/services/service.xml');
     }
 
 
     /**
-     * @Given /^I am verifing the "([^"]*)" API$/
+     * @Given /^I am verifying the "([^"]*)" API$/
      */
     public function iAmVerifingTheSelectedAPI($arg1)
     {
@@ -102,10 +79,10 @@ class ServiceContext extends BehatContext
     public function iRequestASpecificService()
     {
         //  Send request for specific Service
-	    $url = "http://172.28.128.17/app_dev.php/v0/services/1";
+	    $url = "http://172.28.128.17/app_dev.php/services/1";
 		$client = new Client();
 		$client->setDefaultOption('headers', array(
-			    'Accept' => 'headapplication/vnd.fvc.v0+xml,application/vnd.fvc.v1+xml,text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+			    'Accept' => 'headapplication/vnd.fvc.v0+xml,application/vnd.fvc.v0+xml,text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
 		));
 		$this->responseService = $client->get($url);
     }
@@ -124,10 +101,10 @@ class ServiceContext extends BehatContext
     public function iRequestASpecificServiceId($servID)
     {
         //  Send request for specific Service
-	    $url = "http://".$this->srv."/".$this->env."/".$this->verNo."/".$this->api."/".$servID;
+	    $url = "http://".$this->srv."/".$this->env."/".$this->api."".$servID;
 		$client = new Client();
 		$client->setDefaultOption('headers', array(
-			    'Accept' => 'headapplication/vnd.fvc.v0+xml,application/vnd.fvc.v1+xml,text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+			    'Accept' => 'headapplication/vnd.fvc.v0+xml,application/vnd.fvc.v0+xml,text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
 		));
 		try{
 				$this->responseService = $client->get($url);
@@ -145,7 +122,9 @@ class ServiceContext extends BehatContext
     public function iShouldSeeTheExpectedServiceResults()
     {
 		$expected = $this->expectedXMLrespService;
+        print_r("Expected : @".$expected);
 		$actual = $this->responseService->getBody();
+        print_r("ACTUAL : @".$actual);
 		assertEquals($expected,$actual);
     }
 

@@ -56,20 +56,20 @@ class XsdContext extends BehatContext
     public function iSetRequestValueTo($arg1)
     {
         $this->req = $arg1;
-        //$this->restCall($this->api, $this->ver, $this->req);
         //  Send request for specific Service
-        $url = "http://172.28.128.17/app_dev.php/".$this->ver."/".$this->api."/".$this->req;
+        //example http://172.28.128.17/app_dev.php/services?nid=1
+        $url = "http://172.28.128.17/app_dev.php/".$this->api."".$this->req;
         $client = new Client();
         $client->setDefaultOption('headers', array(
-            'Accept' => 'headapplication/vnd.fvc.v0+xml,application/vnd.fvc.v1+xml,text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+            'Accept' => 'headapplication/vnd.fvc.v0+xml,application/vnd.fvc.v0+xml,text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
         ));
         try{
             $this->responseService = $client->get($url);
             $this->domOrig = $this->responseService->xml();
-            print_r($this->domOrig);
+            //print_r($this->domOrig);
             $this->dom = new DOMDocument();
             $this->dom->loadXML($this->domOrig->asXML());
-            print_r($this->dom);
+            //print_r($this->dom);
 
             $this->responseServiceStatus = $this->responseService->getStatusCode();
         }catch (Exception $e) {
@@ -93,11 +93,9 @@ class XsdContext extends BehatContext
      */
     public function theBeValidAgainstXsd($arg1)
     {
-        $is_valid_xml = $this->dom->schemaValidate('features/testData/'.$this->api.'/fvc_extended_metadata.xsd');
+        $is_valid_xml = $this->dom->schemaValidate('features/testData/'.$this->api.'/'.$arg1);
         assertTrue($is_valid_xml);
-
     }
-
 
 /**
   Area for the sanity checking of Known files both xml & xsd

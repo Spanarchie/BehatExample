@@ -1,13 +1,13 @@
 Feature: Manage requests from client device using API Versioning
   As a Client Device 
   I want to know the API version
-  So That I knw it is Comaptible with my infrastructure.
+  So That I know it is Comaptible with my infrastructure.
 
 
   Background:
     Given I am in the "app_dev.php" environment
     And I am using the Behat server "172.28.128.17"
-	And I am verifing the "services" API
+	And I am verifying the "services" API
 
   Scenario: Requesting a specific Version of API
     Given I am using a client device

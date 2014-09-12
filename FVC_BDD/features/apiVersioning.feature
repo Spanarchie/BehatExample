@@ -1,4 +1,4 @@
-@API
+@API @wip
 Feature: Manage requests from client device using API Versioning
   As a Client Device 
   I want to know the API version

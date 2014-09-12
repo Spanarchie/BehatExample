@@ -1,4 +1,4 @@
-@sanity
+@search
 Feature: Manage requests to/from client device
   In order our connector to work correctly 
   As a SeaChange client
@@ -8,7 +8,7 @@ Feature: Manage requests to/from client device
   Background:
     Given I am in the "app_dev.php" environment
     And I am using the Behat server "172.28.128.17"
-	And I am verifing the "services" API
+	And I am verifying the "services" API
 
   Scenario Outline: controlling order
 	  Given there are <start> cucumbers
